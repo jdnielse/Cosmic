@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://nifty-gui.sourceforge.net/nifty.xsd"
+    xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty.xsd http://nifty-gui.sourceforge.net/nifty.xsd" >
+
+    <useControls filename="nifty-default-controls.xml" />
+
+    <useStyles filename="nifty-default-styles.xml" />
+
+    <popup
+        id="fighterHint"
+        align="right"
+        childLayout="center"
+        controller="cosmic.core.CosmicScreen"
+        valign="bottom"
+        width="35%" >
+
+        <panel
+            id="textPanel"
+            align="right"
+            backgroundColor="#000000"
+            childLayout="center"
+            height="100%"
+            valign="bottom"
+            width="100%" >
+
+            <text
+                id="fighterHintText"
+                align="right"
+                font="Interface/Fonts/Default.fnt"
+                text="fighter info"
+                valign="bottom" >
+            </text>
+        </panel>
+    </popup>
+
+    <screen
+        id="main"
+        controller="cosmic.core.CosmicScreen" >
+
+        <layer
+            id="background"
+            childLayout="center" >
+
+            <image filename="assets/Interface/spaceback.jpg" >
+            </image>
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+
+            <panel
+                id="panel_top"
+                align="center"
+                childLayout="center"
+                height="25%"
+                width="75%" >
+
+                <text
+                    font="Interface/Fonts/Default.fnt"
+                    height="100%"
+                    text="Cosmic"
+                    width="100%" />
+            </panel>
+
+            <panel
+                id="panel_mid"
+                align="center"
+                childLayout="center"
+                height="40%"
+                width="75%" >
+
+                <text
+                    font="Interface/Fonts/Default.fnt"
+                    height="100%"
+                    text="A space based RTS game."
+                    width="100%"
+                    wrap="true"
+                    color="#ff0000" />
+            </panel>
+
+            <panel
+                id="panel_bottom"
+                align="center"
+                childLayout="horizontal"
+                height="25%"
+                width="75%" >
+
+                <panel
+                    id="1"
+                    childLayout="center"
+                    height="60%"
+                    valign="center"
+                    width="12%" />
+
+                <panel
+                    id="panel_bottom_left"
+                    childLayout="vertical"
+                    height="50%"
+                    valign="center"
+                    width="25%" >
+
+                    <control
+                        id="StartButton"
+                        name="button"
+                        align="center"
+                        label="Create Game"
+                        valign="center"
+                        visibleToMouse="true" >
+
+                        <interact onClick="startGame()" />
+                    </control>
+
+                    <control
+                        id="players"
+                        name="dropDown"
+                        align="center"
+                        width="100px" />
+
+                    <control
+                        id="Port"
+                        name="textfield"
+                        align="center"
+                        maxLength="12"
+                        visibleToMouse="true"
+                        width="100px" />
+                </panel>
+
+                <panel
+                    id="panel_bottom_mid"
+                    childLayout="vertical"
+                    height="50%"
+                    valign="center"
+                    width="25%" >
+
+                    <control
+                        id="JoinButton"
+                        name="button"
+                        align="center"
+                        label="Join Game"
+                        valign="center"
+                        visibleToMouse="true" >
+
+                        <interact onClick="joinGame()" />
+                    </control>
+
+                    <text
+                        align="right"
+                        font="Interface/Fonts/Default.fnt"
+                        text=""
+                        valign="bottom" />
+
+                    <text
+                        align="right"
+                        font="Interface/Fonts/Default.fnt"
+                        text=""
+                        valign="bottom" />
+                </panel>
+
+                <panel
+                    id="panel_bottom_right"
+                    childLayout="vertical"
+                    height="50%"
+                    valign="center"
+                    width="25%" >
+
+                    <control
+                        id="QuitButton"
+                        name="button"
+                        align="center"
+                        label="Quit"
+                        valign="center"
+                        visibleToMouse="true" >
+
+                        <interact onClick="quitGame()" />
+                    </control>
+
+                    <text
+                        align="right"
+                        font="Interface/Fonts/Default.fnt"
+                        text=""
+                        valign="bottom" />
+
+                    <text
+                        align="right"
+                        font="Interface/Fonts/Default.fnt"
+                        text=""
+                        valign="bottom" />
+                </panel>
+
+                <panel
+                    id="2"
+                    childLayout="center"
+                    height="60%"
+                    valign="center"
+                    width="13%" />
+            </panel>
+        </layer>
+    </screen>
+
+    <screen
+        id="errorj"
+        controller="cosmic.core.CosmicScreen" >
+
+        <layer
+            id="background"
+            childLayout="center" >
+
+            <image filename="assets/Interface/spaceback.jpg" >
+            </image>
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+
+            <panel
+                id="panel_top"
+                align="center"
+                childLayout="center"
+                height="50%"
+                width="25%" >
+            </panel>
+
+            <panel
+                id="panel_mid"
+                align="center"
+                childLayout="vertical"
+                width="25%" >
+
+                <text
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    width="100%" />
+
+                <text
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    width="100%" />
+
+                <text
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Failed to Join game."
+                    valign="bottom"
+                    width="100%" />
+            </panel>
+
+            <panel
+                id="panel_bottom"
+                align="center"
+                childLayout="vertical"
+                width="25%" >
+
+                <control
+                    id="Back"
+                    name="button"
+                    align="center"
+                    label="Back"
+                    visibleToMouse="true" >
+
+                    <interact onClick="back()" />
+                </control>
+
+                <control
+                    id="QuitButton"
+                    name="button"
+                    align="center"
+                    label="Quit"
+                    visibleToMouse="true" >
+
+                    <interact onClick="quitGame()" />
+                </control>
+            </panel>
+        </layer>
+    </screen>
+
+    <screen
+        id="errorc"
+        controller="cosmic.core.CosmicScreen" >
+
+        <layer
+            id="background"
+            childLayout="center" >
+
+            <image filename="assets/Interface/spaceback.jpg" >
+            </image>
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+
+            <panel
+                id="panel_top"
+                align="center"
+                childLayout="center"
+                height="50%"
+                width="25%" >
+            </panel>
+
+            <panel
+                id="panel_mid"
+                align="center"
+                childLayout="vertical"
+                width="25%" >
+
+                <text
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    width="100%" />
+
+                <text
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    width="100%" />
+
+                <text
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Failed to Create game."
+                    valign="bottom"
+                    width="100%" />
+            </panel>
+
+            <panel
+                id="panel_bottom"
+                align="center"
+                childLayout="vertical"
+                width="25%" >
+
+                <control
+                    id="Back"
+                    name="button"
+                    align="center"
+                    label="Back"
+                    visibleToMouse="true" >
+
+                    <interact onClick="back()" />
+                </control>
+
+                <control
+                    id="QuitButton"
+                    name="button"
+                    align="center"
+                    label="Quit"
+                    visibleToMouse="true" >
+
+                    <interact onClick="quitGame()" />
+                </control>
+            </panel>
+        </layer>
+    </screen>
+
+    <screen
+        id="join"
+        controller="cosmic.core.CosmicScreen" >
+
+        <layer
+            id="background"
+            childLayout="center" >
+
+            <image filename="assets/Interface/spaceback.jpg" >
+            </image>
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+
+            <panel
+                id="panel_top"
+                align="center"
+                childLayout="center"
+                height="50%"
+                width="25%" >
+            </panel>
+
+            <panel
+                id="panel_mid"
+                align="center"
+                childLayout="vertical"
+                width="25%" >
+
+                <text
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Enter IP Address:"
+                    valign="bottom"
+                    width="100%" />
+
+                <control
+                    id="IPText"
+                    name="textfield"
+                    align="center"
+                    maxLength="20"
+                    valign="bottom"
+                    visibleToMouse="true"
+                    width="150px" />
+
+                <control
+                    id="PortJoin"
+                    name="textfield"
+                    align="center"
+                    maxLength="12"
+                    valign="bottom"
+                    visibleToMouse="true"
+                    width="150px" />
+            </panel>
+
+            <panel
+                id="panel_bottom"
+                align="center"
+                childLayout="vertical"
+                width="25%" >
+
+                <control
+                    id="JoinGame"
+                    name="button"
+                    align="center"
+                    label="Join"
+                    visibleToMouse="true" >
+
+                    <interact onClick="joinGame()" />
+                </control>
+
+                <control
+                    id="Back"
+                    name="button"
+                    align="center"
+                    label="Back"
+                    visibleToMouse="true" >
+
+                    <interact onClick="back()" />
+                </control>
+            </panel>
+        </layer>
+    </screen>
+
+    <screen
+        id="pause"
+        controller="cosmic.core.CosmicScreen" >
+
+        <layer
+            id="background"
+            childLayout="center" >
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+
+            <panel
+                id="panel_top"
+                align="center"
+                childLayout="center"
+                height="50%"
+                width="25%" >
+
+                <text
+                    align="right"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Match Menu"
+                    valign="bottom"
+                    width="100%" />
+            </panel>
+
+            <panel
+                id="panel_mid"
+                align="center"
+                childLayout="center"
+                width="25%" >
+
+                <control
+                    id="MatchResume"
+                    name="button"
+                    align="center"
+                    label="Back to Game"
+                    visibleToMouse="true" >
+
+                    <interact onClick="resume()" />
+                </control>
+            </panel>
+
+            <panel
+                id="panel_bottom"
+                align="center"
+                childLayout="center"
+                width="25%" >
+
+                <control
+                    id="MatchQuit"
+                    name="button"
+                    align="center"
+                    label="Quit"
+                    visibleToMouse="true" >
+
+                    <interact onClick="quitGame()" />
+                </control>
+            </panel>
+        </layer>
+    </screen>
+
+    <screen
+        id="hud"
+        controller="cosmic.core.CosmicScreen" >
+
+        <layer
+            id="background"
+            childLayout="center" >
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+        </layer>
+    </screen>
+
+    <screen
+        id="factory"
+        controller="cosmic.core.CosmicScreen" >
+		 <layer
+		    id= "queue"
+		    childLayout="center">
+		    
+		    <panel
+		        id="buildQueue"
+		       align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                valign="center"
+                visible="true"
+                width="15%"
+                height="23%">
+		        
+		        <text
+                    id="buildQueueF"
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    visible="true"
+                    valign="center" />
+		    </panel>
+		</layer>
+		
+		<layer
+            id="”hintLayerFactory″"
+            childLayout="center" >
+
+            <panel
+                id="factory_fighter"
+                align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                padding="0px,0px,5px,0px"
+                valign="bottom"
+                visible="false" >
+
+                <text
+                    id="content"
+                    align="left"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Fighter &#10; HP: 10 &#10; Attack: .5 &#10; Velocity: 3 &#10;  Cost: 540 &#10; Build Time: .5 "
+                    valign="top" />
+            </panel>
+
+            <panel
+                id="factory_node"
+                align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                padding="0px,0px,5px,0px"
+                valign="bottom"
+                visible="false" >
+
+                <text
+                    id="content"
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Relay Node &#10; HP: 20 &#10; Attack: 5 &#10; Velocity: 2 &#10; Cost: 1500 &#10; Build Time: 7"
+                    valign="center" />
+            </panel>
+
+            <panel
+                id="factory_platform"
+                align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                padding="0px,0px,5px,0px"
+                valign="bottom"
+                visible="false" >
+
+                <text
+                    id="content"
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Missile Platform &#10; HP: 200 &#10; Attack: 10 &#10; Velocity: 1 &#10; Cost: 4567 &#10; Build Time: 12"
+                    valign="center" />
+            </panel>
+            
+             <panel
+                id="factory_cannon"
+                align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                padding="0px,0px,5px,0px"
+                valign="bottom"
+                visible="false" >
+
+                <text
+                    id="content"
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Laser Cannon &#10; HP: 200 &#10; Attack: 10 &#10; Velocity: 4 &#10; Cost: 2500 &#10; Build Time: 10"
+                    valign="center" />
+            </panel>
+            
+        </layer>
+        <layer
+            id="background"
+            childLayout="vertical" >
+
+            <panel
+                align="right"
+                childLayout="vertical"
+                valign="top" >
+
+                <text
+                    id="resources"
+                    align="right"
+                    backgroundColor="#000000"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    valign="top"
+                    width="100%" >
+                </text>
+            </panel>
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+
+            <panel
+                id="panel_fighter"
+                childLayout="center"
+                height="100%"
+                width="35%" >
+
+                
+                <control
+                    id="FighterButton"
+                    name="button"
+                    align="right"
+                    label="Fighter"
+                    valign="bottom"
+                    visibleToMouse="true" >
+					
+           		<effect>
+
+                	<onStartHover
+                            name="nop"
+                            onStartEffect="createHint(factory_fighter,fighter)" />
+
+                    <onEndHover
+                            name="nop"
+                            onStartEffect="deactivateHint(factory_fighter)" />
+                    </effect>
+                
+                    <interact onClick="createUnit(Fighter)" />
+                	
+                </control>
+            </panel>
+
+            <panel
+                id="panel_Node"
+                childLayout="center"
+                height="0%"
+                width="45%" >
+
+                    
+                <control
+                    id="RelayNodeButton"
+                    name="button"
+                    align="right"
+                    label="Relay Node"
+                    valign="bottom"
+                    visibleToMouse="true" >
+					
+                    
+                <effect>
+
+                	<onStartHover
+                            name="nop"
+                            onStartEffect="createHint(factory_node,fighter)" />
+
+                    <onEndHover
+                            name="nop"
+                            onStartEffect="deactivateHint(factory_node)" />
+                    </effect>
+                    
+                    <interact onClick="createUnit(RelayNode)" />
+                </control>
+            </panel>
+
+            <panel
+                id="panel_Platform"
+                childLayout="center"
+                height="0%"
+                width="55%" >
+
+                <control
+                    id="PlatformButton"
+                    name="button"
+                    align="right"
+                    label="Missile Platform"
+                    valign="bottom"
+                    visibleToMouse="true" >
+
+                    <interact onClick="createUnit(MissilePlatform)" />
+                    
+                    
+                <effect>
+
+                	<onStartHover
+                            name="nop"
+                            onStartEffect="createHint(factory_platform,MissilePlatform)" />
+
+                    <onEndHover
+                            name="nop"
+                            onStartEffect="deactivateHint(factory_platform)" />
+                    </effect>
+                    
+                    
+                </control>
+            </panel>
+
+            <panel
+                id="panel_Cannon"
+                childLayout="center"
+                height="0%"
+                width="65%" >
+
+                
+                <control
+                    id="CannonButton"
+                    name="button"
+                    align="right"
+                    label="Laser Cannon"
+                    valign="bottom"
+                    visibleToMouse="true" >
+
+                <effect>
+
+                	<onStartHover
+                            name="nop"
+                            onStartEffect="createHint(factory_cannon,fighter)" />
+
+                    <onEndHover
+                            name="nop"
+                            onStartEffect="deactivateHint(factory_cannon)" />
+                    </effect>
+                    
+                    <interact onClick="createUnit(LaserCannon)" />
+                </control>
+            </panel>
+        </layer>
+    </screen>
+
+    <screen
+        id="mother"
+        controller="cosmic.core.CosmicScreen" >
+
+        <layer
+		    id= "queue"
+		    childLayout="center">
+		    
+		    <panel
+		        id="buildQueue"
+		       align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                valign="center"
+                visible="true"
+                width="20%"
+                height="23%">
+		        
+		        <text
+                    id="buildQueueText"
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    visible="true"
+                    valign="center" />
+		    </panel>
+		</layer>
+        
+        <layer
+            id="”hintLayer″"
+            childLayout="center" >
+
+            <panel
+                id="mothership_fighter"
+                align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                padding="0px,0px,5px,0px"
+                valign="bottom"
+                visible="false" >
+
+                <text
+                    id="content"
+                    align="left"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Fighter &#10; HP: 10 &#10; Attack: .5 &#10; Velocity: 3 &#10;  Cost: 540 &#10; Build Time: .5 "
+                    valign="top" />
+            </panel>
+
+            <panel
+                id="mothership_node"
+                align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                padding="0px,0px,5px,0px"
+                valign="bottom"
+                visible="false" >
+
+                <text
+                    id="content"
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Relay Node &#10; HP: 20 &#10; Attack: 5 &#10; Velocity: 2 &#10; Cost: 1500 &#10; Build Time: 7"
+                    valign="center" />
+            </panel>
+
+            <panel
+                id="mothership_factory"
+                align="right"
+                backgroundColor="#000000"
+                childLayout="center"
+                padding="0px,0px,5px,0px"
+                valign="bottom"
+                visible="false" >
+
+                <text
+                    id="content"
+                    align="center"
+                    font="Interface/Fonts/Default.fnt"
+                    text="Factory &#10; HP: 100 &#10; Attack: 0 &#10; Velocity: 3 &#10; Cost: 2000 &#10; Build Time: 15"
+                    valign="center" />
+            </panel>
+        </layer>
+
+        <layer
+            id="background"
+            childLayout="vertical" >
+
+            <panel
+                align="right"
+                childLayout="vertical"
+                valign="top" >
+
+                <text
+                    id="resources"
+                    align="right"
+                    backgroundColor="#000000"
+                    font="Interface/Fonts/Default.fnt"
+                    text=""
+                    valign="top"
+                    width="100%" >
+                </text>
+            </panel>
+        </layer>
+
+        <layer
+            id="foreground"
+            childLayout="vertical" >
+
+            <panel
+                id="panel_fighter"
+                childLayout="center"
+                height="100%"
+                width="35%" >
+
+                <control
+                    id="FighterButton"
+                    name="button"
+                    align="right"
+                    label="Create Fighter"
+                    valign="bottom"
+                    visibleToMouse="true" >
+
+                    <effect>
+
+                        <onStartHover
+                            name="nop"
+                            onStartEffect="createHint(mothership_fighter,fighter)" />
+
+                        <onEndHover
+                            name="nop"
+                            onStartEffect="deactivateHint(mothership_fighter)" />
+                    </effect>
+
+                    <interact onClick="createUnit(Fighter)" />
+                </control>
+            </panel>
+
+            <panel
+                id="panel_Node"
+                childLayout="center"
+                height="0%"
+                width="45%" >
+
+                <control
+                    id="RelayNodeButton"
+                    name="button"
+                    align="right"
+                    label="Relay Node"
+                    valign="bottom"
+                    visibleToMouse="true" >
+
+                    <effect>
+
+                        <onStartHover
+                            name="nop"
+                            onStartEffect="createHint(mothership_node,relaynode)" />
+
+                        <onEndHover
+                            name="nop"
+                            onStartEffect="deactivateHint(mothership_node)" />
+                    </effect>
+
+                    <interact onClick="createUnit(RelayNode)" />
+                </control>
+            </panel>
+
+            <panel
+                id="panel_Factory"
+                childLayout="center"
+                height="0%"
+                width="55%" >
+
+                <control
+                    id="FactoryButton"
+                    name="button"
+                    align="right"
+                    label="Factory"
+                    valign="bottom"
+                    visibleToMouse="true" >
+
+                    <effect>
+
+                        <onStartHover
+                            name="nop"
+                            onStartEffect="createHint(mothership_factory,factory)" />
+
+                        <onEndHover
+                            name="nop"
+                            onStartEffect="deactivateHint(mothership_factory)" />
+                    </effect>
+
+                    <interact onClick="createUnit(Factory)" />
+                </control>
+            </panel>
+
+            <panel>
+            </panel>
+        </layer>
+    </screen>
+    
+    <screen
+        id="end"
+        childlayout="vertical">
+        <layer
+            id="endstate"
+            childLayout="vertical">
+            <panel
+                id="endButtons"
+                childLayout="vertical"
+                align="center"
+                valign="center"
+                height="100%"
+                width="100%">
+                <control
+                    id="Quit"
+                    name="quitbutton"
+                    align="center"
+                    valign="center"
+                    label="QUIT DA GAEME"
+                    visibleToMouse="true">
+                    
+                    <interact onClick = "quitGame()"/>
+                    
+                </control>
+            </panel>
+        </layer>
+    </screen>
+
+</nifty>
